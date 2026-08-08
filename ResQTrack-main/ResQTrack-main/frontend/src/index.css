@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #09090B;
+  --surface: #18181B;
+  --surface-highlight: #27272A;
+  --border-color: #27272A;
+  --text-primary: #FAFAFA;
+  --text-secondary: #A1A1AA;
+  --severe: #EF4444;
+  --moderate: #F97316;
+  --mild: #EAB308;
+  --user-location: #3B82F6;
+  --success: #10B981;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--background);
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+code, .font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Barlow Condensed', sans-serif;
+  letter-spacing: 0.025em;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface-highlight);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Leaflet overrides for dark theme */
+.leaflet-container {
+  background: var(--background) !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: var(--surface) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.8) !important;
+}
+
+.leaflet-popup-content {
+  margin: 12px 16px !important;
+  font-size: 13px !important;
+}
+
+.leaflet-popup-tip {
+  background: var(--surface) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.leaflet-control-zoom {
+  border: 1px solid var(--border-color) !important;
+  border-radius: 4px !important;
+  overflow: hidden;
+}
+
+.leaflet-control-zoom a {
+  background: var(--surface) !important;
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: var(--surface-highlight) !important;
+}
+
+.leaflet-control-attribution {
+  background: var(--surface) !important;
+  color: var(--text-secondary) !important;
+  font-size: 10px !important;
+}
+
+.leaflet-control-attribution a {
+  color: var(--text-secondary) !important;
+}
+
+/* Marker cluster styles */
+.marker-cluster-small,
+.marker-cluster-medium,
+.marker-cluster-large {
+  background-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+.marker-cluster-small div,
+.marker-cluster-medium div,
+.marker-cluster-large div {
+  background-color: rgba(239, 68, 68, 0.8) !important;
+  color: white !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-weight: 600 !important;
+}
+
+/* Custom disaster markers */
+.disaster-marker {
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.disaster-marker:hover {
+  transform: scale(1.2);
+}
+
+.disaster-marker.severe {
+  background: var(--severe);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+}
+
+.disaster-marker.moderate {
+  background: var(--moderate);
+  box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
+}
+
+.disaster-marker.mild {
+  background: var(--mild);
+  box-shadow: 0 0 10px rgba(234, 179, 8, 0.4);
+}
+
+/* User location marker */
+.user-marker {
+  width: 20px;
+  height: 20px;
+  background: var(--user-location);
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.7);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
+/* Glassmorphism panel */
+.glass-panel {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Grid texture background */
+.grid-texture {
+  background-image: 
+    linear-gradient(to right, rgba(39, 39, 42, 0.5) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(39, 39, 42, 0.5) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Chart.js dark theme */
+canvas {
+  filter: none !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.4s ease-out;
+}
+
+/* Tailwind dark mode overrides */
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 84% 60%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 64%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 84% 60%;
+    --chart-1: 0 84% 60%;
+    --chart-2: 25 95% 53%;
+    --chart-3: 48 96% 53%;
+    --chart-4: 217 91% 60%;
+    --chart-5: 160 84% 39%;
+    --radius: 0.25rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Stat card glow effects */
+.stat-card-severe {
+  box-shadow: inset 0 0 30px rgba(239, 68, 68, 0.1);
+}
+
+.stat-card-moderate {
+  box-shadow: inset 0 0 30px rgba(249, 115, 22, 0.1);
+}
+
+.stat-card-mild {
+  box-shadow: inset 0 0 30px rgba(234, 179, 8, 0.1);
+}
+
+/* Loading spinner */
+.loading-spinner {
+  border: 3px solid var(--surface-highlight);
+  border-top: 3px solid var(--severe);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

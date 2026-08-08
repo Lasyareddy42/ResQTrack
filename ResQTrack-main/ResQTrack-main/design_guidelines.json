@@ -1,0 +1,128 @@
+{
+  "design_system": {
+    "identity": {
+      "name": "ResQTrack",
+      "archetype": "The Performance Pro",
+      "vibe": "Tactical, High-Precision, Alert, Professional",
+      "theme_mode": "dark"
+    },
+    "typography": {
+      "font_family": {
+        "headings": "Barlow Condensed, sans-serif",
+        "body": "Inter, sans-serif",
+        "mono": "JetBrains Mono, monospace"
+      },
+      "scale": {
+        "h1": "text-4xl font-bold tracking-tight uppercase",
+        "h2": "text-2xl font-semibold tracking-tight uppercase",
+        "h3": "text-xl font-medium tracking-normal",
+        "body": "text-sm leading-relaxed",
+        "caption": "text-xs text-muted-foreground font-mono"
+      },
+      "imports": [
+        "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      ]
+    },
+    "colors": {
+      "palette": {
+        "background": "#09090B",
+        "surface": "#18181B",
+        "surface_highlight": "#27272A",
+        "border": "#27272A",
+        "text_primary": "#FAFAFA",
+        "text_secondary": "#A1A1AA",
+        "primary": "#EF4444",
+        "secondary": "#F97316",
+        "tertiary": "#EAB308",
+        "accent_blue": "#3B82F6",
+        "success": "#10B981"
+      },
+      "semantic": {
+        "severe": "#EF4444",
+        "moderate": "#F97316",
+        "mild": "#EAB308",
+        "user_location": "#3B82F6",
+        "heatmap_low": "#EAB308",
+        "heatmap_high": "#EF4444"
+      }
+    },
+    "layout": {
+      "grid_system": "Bento Grid Mode B (High Density)",
+      "spacing": {
+        "container_padding": "p-4 md:p-6",
+        "element_gap": "gap-4",
+        "sidebar_width": "w-80"
+      },
+      "radius": "rounded-sm",
+      "shadows": {
+        "card": "shadow-[0_4px_20px_-2px_rgba(0,0,0,0.5)]",
+        "floating": "shadow-[0_8px_30px_rgba(0,0,0,0.8)]"
+      }
+    },
+    "visual_enhancers": {
+      "glassmorphism": "bg-black/80 backdrop-blur-xl border border-white/10",
+      "neon_glow": "drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]",
+      "grid_lines": "bg-[linear-gradient(to_right,#27272a_1px,transparent_1px),linear-gradient(to_bottom,#27272a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
+    },
+    "components": {
+      "buttons": {
+        "primary": "bg-red-600 hover:bg-red-700 text-white font-bold uppercase tracking-wider rounded-sm shadow-lg transition-all active:scale-95",
+        "secondary": "bg-zinc-800 hover:bg-zinc-700 text-zinc-100 border border-zinc-700 rounded-sm uppercase tracking-wide transition-all",
+        "ghost": "hover:bg-white/5 text-zinc-400 hover:text-white transition-colors"
+      },
+      "cards": {
+        "base": "bg-zinc-900/90 border border-zinc-800 rounded-sm p-4 relative overflow-hidden",
+        "interactive": "hover:border-zinc-600 transition-colors cursor-pointer"
+      },
+      "inputs": {
+        "base": "bg-black/50 border-zinc-800 focus:border-red-500 focus:ring-1 focus:ring-red-500 rounded-sm text-sm placeholder:text-zinc-600"
+      }
+    }
+  },
+  "assets": {
+    "images": {
+      "wildfire_thumbnail": "https://images.unsplash.com/photo-1717012650019-fc297b57892c",
+      "earthquake_thumbnail": "https://images.unsplash.com/photo-1677183029557-493ba0502bee",
+      "volcano_thumbnail": "https://images.unsplash.com/photo-1764377975933-2ffbd913f3c2",
+      "hurricane_thumbnail": "https://images.unsplash.com/flagged/photo-1574848488709-65d899054a02"
+    },
+    "icons": {
+      "library": "lucide-react",
+      "preferred_set": ["AlertTriangle", "Flame", "Waves", "Activity", "MapPin", "Navigation", "Layers", "BarChart3", "Thermometer", "Wind"]
+    },
+    "map_tiles": {
+      "provider": "CartoDB.DarkMatter",
+      "url": "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+      "attribution": "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors &copy; <a href='https://carto.com/attributions'>CARTO</a>"
+    }
+  },
+  "implementation_instructions": {
+    "general": [
+      "Use 'Barlow Condensed' for all headings to give a tactical dashboard feel.",
+      "Use 'JetBrains Mono' for coordinates, timestamps, and numerical data.",
+      "Ensure the map container takes up the full screen (absolute inset-0) with z-0.",
+      "Sidebar and overlays must have a high z-index (z-10, z-20) and use the glassmorphism style defined.",
+      "Do NOT use rounded-xl or rounded-2xl. Stick to rounded-sm or rounded-none for a sharp, professional look.",
+      "Use the 'grid_lines' visual enhancer in the background of the sidebar or empty states to add texture.",
+      "All interactive elements must have `data-testid` attributes."
+    ],
+    "map_integration": [
+      "Initialize Leaflet map with dark tiles.",
+      "Custom markers should use colored circles (divIcon) with a glowing CSS effect (box-shadow).",
+      "Red for Severe, Orange for Moderate, Yellow for Mild.",
+      "User location marker should be a pulsing blue dot."
+    ],
+    "charts": [
+      "Configure Chart.js defaults to have transparent backgrounds.",
+      "Set default font color to #A1A1AA (zinc-400).",
+      "Use the semantic colors (Red, Orange, Yellow) for data series."
+    ]
+  },
+  "universal_guidelines": [
+    "Avoid gradients on text. Keep text high-contrast solid colors.",
+    "Do not center-align dashboard content. Use left alignment for data readability.",
+    "Use 24px-32px padding inside cards to prevent cramping.",
+    "Add subtle 1px borders to all panels to separate them from the map background.",
+    "Ensure all buttons have a distinct hover state (brightness-110 or bg-shift)."
+  ]
+}
